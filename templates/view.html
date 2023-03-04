@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    View Images
+{% endblock %}
+
+{% block main %}
+<body>
+    <div>
+    <h4 class="header4">{{ userfirstname }}, you have 
+        <a class="btn btn-dark" id="cart1" value="0">0</a>&nbsp; items in your cart
+    </h4>
+    <div id="cart"></div>
+
+    <br>
+    <div>
+        <form>
+            <select class="form-control mx-auto w-auto" name="staff" onchange="dropdownview(this.value);">
+                <option value="">Choose an Art Ghetto Collection &nbsp;&nbsp; ▼</option>
+                <option value="images1">Rope Abstract: Black and White</option>
+                <option value="images2">City Landscape: Black and White</option>
+                <option value="images3">Graffiti Art: Full Colour</option>
+             </select>
+        </form>
+    </div>
+        <br>
+    <div id="infodiv"></div>
+    <div>
+        <div class="row">
+            <div class="column">
+                <img src="static/111.jpg" alt="Rope" class="imgsize">
+            </div>
+            <div class="column">
+                <img src="/static/122.jpg" alt="Rope" class="imgsize">
+            </div>
+            <div class="column">
+                <img src="/static/136.jpg" alt="Rope" class="imgsize">
+            </div>
+        </div>
+    </div>
+
+</body>
+
+{% endblock %}
+
+

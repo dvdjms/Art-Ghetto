@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <h1>Apology</h1>
+{% endblock %}
+
+{% block main %}
+
+    <body>
+        <div class="backgroundimage">
+            <img id="imagesize" src="static/image montage faded.jpg" alt="image montage">
+            <div class="imagetext">
+            <h1>Error&nbsp;{{ top | urlencode }}<br><br>{{ bottom | urlencode | replace("-", " ")}}</h1>
+        </div>    
+    </body>
+
+{% endblock %}
+

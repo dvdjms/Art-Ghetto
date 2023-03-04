@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Invoice
+{% endblock %}
+
+{% block main %}
+
+<body>
+    <h4>Invoice INV{{ invno }}</h4>
+    <div class="container_aligninv">
+        <div id="invdate">{{ invdate }}</div>
+        <br>
+        <table>
+            <thead class="thead-dark">
+                <tr  class="mb-2">
+                    <th id="iinvoice"><h6>Invoice</h6></th>
+                    <th id="iamount"><h6>&nbsp;&nbsp;Product ID&nbsp;&nbsp;</h6></th>
+                    <th id="iproduct"><h6>Product</h6></th>
+                    <th id="idate"><h6>&nbsp;&nbsp;Price&nbsp;&nbsp;</h6></th>
+                    <th id="iqty"><h6>&nbsp;&nbsp;Qty&nbsp;&nbsp;</h6></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in invinfo %}
+                    <tr  class="mb-2">
+                        <td id="invno">INV{{ i.invoice_no }}</td>
+                        <td id="invproid">&nbsp;&nbsp;&nbsp;{{ i.product_id }}&nbsp;&nbsp;&nbsp;</td>
+                        <td id="invpro">{{ i.product }}</td>
+                        <td id="invpri">&nbsp;&nbsp;&nbsp;${{ i.price }}.00&nbsp;&nbsp;&nbsp;</td>
+                        <td id="invqty">&nbsp;&nbsp;&nbsp;{{ i.quantity }}&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            <br>
+            <h6>Total:&nbsp;&nbsp;${{ totalprice }}</h6>
+            <br>
+        </div>
+        <div>
+            <a class="btn btn-dark" class="nav-link" href="/transactions">Back to transactions</a>
+        </div>
+    </div>
+
+</body>
+
+{% endblock %}
+

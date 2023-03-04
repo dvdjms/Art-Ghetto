@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Transactions
+{% endblock %}
+
+{% block main %}
+<body>
+    <h4 class="title">Transaction History</h4>
+    <br>
+    <div class="container_align">
+        <table>
+            <thead class="thead-dark">
+                <tr  class="mb-2">
+                    <th id="tinvoice"><h6>Invoice</h6></th>
+                    <th id="tamount"><h6>&nbsp;&nbsp;Amount&nbsp;&nbsp;</h6></th>
+                    <th id="tcard"><h6>Card number</h6></th>
+                    <th id="tdate"><h6>&nbsp;&nbsp;Date/time&nbsp;&nbsp;</h6></th>
+                    <th id="tdetails"><h6>&nbsp;&nbsp;See items&nbsp;&nbsp;</h6></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in trans %}
+                    <tr  class="mb-2">
+                        <td id="transinv">INV{{ i.invoice_no }}</td>
+                        <td id="transtotal">&nbsp;&nbsp;&nbsp;${{ i.totalprice }}&nbsp;&nbsp;&nbsp;</td>
+                        <td id="transpay">****{{ i.paynumber4 }}</td>
+                        <td id="transsql">&nbsp;&nbsp;&nbsp;{{ i.sqltime }}&nbsp;&nbsp;&nbsp;</td>
+                        <form action="/transactions" method="post">
+                            <th><Button class="btn btn-dark" name="invoice_no" value="{{ i.invoice_no }}">See items</Button></th>
+                        </form>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+{% endblock %}

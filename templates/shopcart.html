@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Shopping Cart
+{% endblock %}
+
+{% block main %}
+<body>
+    {% if carty == "None" %}
+        <tr  class="mb-2">
+        </tr>
+        <br>
+        <h5>You have no items in your shopping cart</h5>
+        <br>
+        <h6>Visit our collections and select items</h6>
+        <br>
+        <a class="btn btn-dark" class="nav-link" href="/view">View Art</a>
+    {% else %}
+    <tr  class="mb-2">
+    </tr>
+    <br>
+    <h4 class="header4">{{ userfirstname }}, your selected items</h4>
+        <div class="float-container"> 
+            <div class="float-child">
+                <div class="container">
+                    <table>
+                        <thead class="thead-dark">
+                            <tr  class="mb-2">
+                                <th id="htablepid"><h6>Product ID</h6></th>
+                                <th id="htablepro"><h6>&nbsp;&nbsp;&nbsp;Product name</h6></th>
+                                <th id="hthablepri"><h6>Price</h6></th>
+                                <th id="htablequa"><h6>&nbsp;&nbsp;&nbsp;&nbsp;Qty&nbsp;&nbsp;&nbsp;&nbsp;</h6></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in carty %}
+                                <tr  class="mb-2">
+                                    <td class="col" id="tablepid">{{ i.product_id }}</td>
+                                    <td class="col-6" id="tablepro">&nbsp;&nbsp;&nbsp;{{ i.product }}</td>
+                                    <td class="col" id="tablepri">${{ i.price }}</td>
+                                    <td class="col" id="tablequa">&nbsp;&nbsp;&nbsp;&nbsp;{{ i.quantity }}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <form action="/shopcart" method="post">
+                                        <td><Button class="btn btn-dark" name="productitem" value="{{ i.product_id }}">Remove item</Button></td>
+                                    </form>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <br>
+                    <form action="/shopcart" id="removeall" method="post"><Button class="btn btn-dark" name="removeall" type="submit" value="removeall">Remove all</Button></form>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="float-child1">
+                <h4 class="mb-3">Payment details</h4>
+                <br>
+                <h6 class="mb-3">Total to pay ${{ totalsum }}</h6>
+                <form action="/shopcart" method="post" class="form-control:focus">
+                    <div class="mb-3">
+                        <input autocomplete="off" name="pname" class="form-control mx-auto w-auto" placeholder="Name on card" type="text">
+                    </div>
+                    <div class="mb-3">
+                        <input autocomplete="off" name="pnumber" class="form-control mx-auto w-auto" placeholder="Card number" type="text">
+                    </div>
+                    <div class="mb-3">
+                        <input autocomplete="off" name="pexpiry" class="form-control mx-auto w-auto" placeholder="Expiry date MM/YYYY" type="text">
+                    </div>
+                    <div class="mb-3">
+                        <input autocomplete="off" name="pcsv" class="form-control mx-auto w-auto" placeholder="CSV number" type="text">
+                    </div>
+                    <button class="btn btn-dark" name="paynow" type="submit">Pay now</button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+</body>
+{% endblock %}
+
